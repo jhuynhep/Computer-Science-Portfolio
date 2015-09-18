@@ -1,0 +1,42 @@
+h1 {
+    font-family: verdana;
+    text-align: center;
+}
+h2, 
+h3,
+h4, 
+h5,
+h6 {
+    font-size: 24px;
+}
+body {
+    background-color: rgb(255, 255, 204);
+    font-family: helvetica;
+}
+img {
+    width: 30%;
+}
+
+div {
+    vertical-align: top;
+    display: inline-block;
+}
+.border {
+    border:1px dotted black;
+    padding:5px;
+}
+.cascading {
+    margin-right:50px;
+}
+
+#topheader{
+    font-size: 35px;
+    border: none;
+    
+    transition: 2s all linear;
+}
+
+#topheader:hover{
+    border: 5px dashed blue;
+    font-size: 50px;
+}

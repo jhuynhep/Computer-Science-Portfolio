@@ -1,0 +1,15 @@
+#navbar {
+    border: double;
+    border-width: 10px;
+    color: rgb(102, 204, 204);
+    font-weight:bold;
+    text-align:center;
+}
+#navbar li {
+    display: inline-block;
+}
+#navbar a {
+} 
+.spacing {
+    margin: 15px;
+}
