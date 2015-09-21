@@ -2,7 +2,10 @@ h1 {
     font-family:verdana;
     text-align:center;
 }
-h2, h3 {
+h2, 
+h3,
+h4,
+h5{
     font-size:24px;
 }
 body {
@@ -39,9 +42,9 @@ body {
     .flip-container:hover .card {
         transform: rotateY(180deg);
     }
-    .card, .front, .back {
-        width: 210px;
-        height: 195px;
+    .card, .back {
+        width: 240px;
+        height: 240px;
     }
     .card {
         transition: 0.5s;
@@ -63,7 +66,7 @@ body {
     
 
 .flip-containers {
-        margin-left:1100px;
+        margin-left:1050px;
         margin-bottom:500px;
         perspective:500;
         display: inline-block;
@@ -71,7 +74,24 @@ body {
 .flip-containers:hover .card {
         transform: rotateY(180deg);
     }
-    
-    
+#des-motherboard {
+    position:absolute;
+    top:132%; 
+};
+.back {
+    padding:center;
+}
+/*.card {*/
+    /*border:2px solid;*/
+    /*border-radius:25px;*/
+}
+p {
+    margin-right:5px;
+    margin-left:5px;
+}
+.front {
+    width:240px
+    height:300px;
+}
 
         
