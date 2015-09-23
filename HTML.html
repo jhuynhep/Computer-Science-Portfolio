@@ -14,10 +14,10 @@
         </ul>
         <h1 id="topheader">HTML/CSS</h1>
         <div class="border">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2000px-HTML5_logo_and_wordmark.svg.png";>
-            <div style="width:60%">
+            <img style="width:21%; margin-left:3%; margin-right:3%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2000px-HTML5_logo_and_wordmark.svg.png";>
+            <div style="width:69%">
                 <h2>What is HTML?</h2>
-                <p id="language">HTML stands for HyperText Markup Language. This markup language is used to make webpages. In 1990, HTML was created by Tim Berners-Lee. HTML is used to add heading, paragraphs, images, and links to a webpage. In a HTML document, it is written by using HTML tags. HTML tags are used to descibe the content in a document. When creating an html document, the first line says <!DOCTYPE html>. This is used in order to tell the browser that the document is in HTML. After writing up all of the codes, the text is saved as an html file and is then viewabale through a browser. </p>
+                <p id="language">HTML stands for HyperText Markup Language. This markup language is used to make webpages. In 1990, HTML was created by Tim Berners-Lee, but the reason html was created is still unclear. HTML is used to add heading, paragraphs, images, and links to a webpage. In a HTML document, it is written by using HTML tags. HTML tags are used to descibe the content in a document. When creating an html document, the first line says &lt;!DOCTYPE html&gt;. This is used in order to tell the browser that the document is in HTML. After writing up all of the codes, the text is saved as an html file and is then viewabale through a browser. </p>
             </div>
         </div>
         <br><br><br><br>
@@ -25,39 +25,44 @@
             <img class="cascading" src="http://www.nerdorturd.com/wp-content/uploads/2014/10/css_cascading_style_sheet.jpg">
             <div style="width:60%">
                 <h3>What is CSS?</h3>
-                <p id="sheets">CSS was created by the World Wide Web Consortium. CSS stands for cascading style sheets and CSS is used to style the webpage. CSS is used to style the page such as changing the font, creating a border, or adding special effectws to the page. Often times, there is a separate file for the css that is linked to the html file. This way, all of the codes used to style the page are all in one document.</p>
+                <p id="sheets">CSS was created by the World Wide Web Consortium because when the font tag and color attributes were first created, developers had to add those properties to every single tag. Therefore, CSS was introduced to make it easier and faster to style the page.  CSS stands for cascading style sheets and CSS is used to style the webpage. CSS is used to style the page such as changing the font, creating a border, or adding special effects to the page. Often times, there is a separate file for the css that is linked to the html file. This way, all of the code used to style the page are all in one document.</p>
             </div>
         </div>
         <br><br><br><br>
         <div class="border">
-            <img class="cascading" src="https://howtoprogramwithjava.com/wp-content/uploads/2013/02/post-20130220.jpg">
+            <img style="margin-top:70px" class="cascading" src="https://howtoprogramwithjava.com/wp-content/uploads/2013/02/post-20130220.jpg">
             <div style="width:60%">
                 <h4>What are tags?</h4>
-                <p id="tag">Tags are keywords that help the browser know how to display the content. Another way to say this would be that tags are a piece of code that identifies the starts or end of an element. Tags are words that are surronded by angle brackets and there is an opening tag and a closing tag. However, in the closing tag, there is a slash before the tag name. In between an opening and a closing tag, the text between them is what appears on the website. </p>
+                <p id="tag">Tags are keywords that help the browser know how to display the content. Tags have to go through the web browser in order for the webpage to be displayed on the screen. Another way to say this would be that tags are a piece of code that identifies the starts or end of an element. Tags are words that are surronded by angle brackets and there is an opening tag and a closing tag. However, in the closing tag, there is a slash before the tag name. In between an opening and a closing tag, the text between them is what appears on the website. The tag text itself does not apeear on the webpage.</p>
                 <h5>Examples of Tags</h5> 
                 <table style="width:100%">
                     <tr>
                         <td style="font-weight:bold">Tag</td>
                         <td style="font-weight:bold">Function</td> 
+                        <td style="font-weight:bold">Characteristic</td>
                     </tr>
                     <tr>
                         <td>&lt;p&gt;</td>
-                        <td>start a paragraph</td> 
+                        <td>The p tag is used to start a paragraph.</td> 
+                        <td>Defaultly, it is a block element, meaning that the space that the p tag takes up will naturally expand
+                        as you add more words to the paragrph.</td>
                     </tr>
                     <tr>
                         <td>&lt;h1&gt;</td>
-                        <td>create a heading for a page</td> 
+                        <td>The h1 tag is used to create a heading for a page</td> 
+                        <td>It will usually be the largest text on the webpage.</td>
                     </tr>
                     <tr>
                         <td>&lt;ul&gt;</td>
-                        <td>start a list and indicate that it's an ordered list</td> 
+                        <td>The ul tag is used to start a list and indicate that it's an unordered list</td> 
+                        <td>Because it's an unordered list, it's in bullet point form.</td>
                     </tr>
                     <tr>
                         <td>&lt;br&gt;</td>
-                        <td>indicate a line break</td> 
+                        <td>The br tag is used to indicate a line break</td> 
+                        <td>The br tag is an empty tag, meaning that it had no end tag.</td>
                     </tr>
                 </table>
-                <!--<p id="example">One example of a tag is &lt;p&gt;. This tag is used to start a paragraph. Another example of a tag is &lt;h1&gt;. This tag is used to create a heading for a page. An additional example of a tag is &lt;ul&gt; and this tag is used to start a list and indciate that it's an orderlist. One more example of a tag is &lt;br&gt;. This tag is used to indicate a line break.</p>-->
             </div>        
         </div>
         <br><br><br><br>
@@ -65,7 +70,7 @@
             <img class=cascading src="http://pics.cssbakery.com/pics/imgtag.jpg">
             <div style="width:60%">
                 <h6>What are attributes?</h5>
-                <p>Attributes are placed inside the starting tag, after the selector but before the value. The purpose of the attribute is to provide addition information, or modify the element. For instance, you could use the attribute of class="specificword" in order to later style that element.</p>
+                <p>Attributes are placed inside the starting tag, after the tag name but before the value. The purpose of the attribute is to provide additional information, or modify the element. For instance, you could use the attribute of class in order to later style that element using css.</p>
             </div>        
         </div>
     </body>

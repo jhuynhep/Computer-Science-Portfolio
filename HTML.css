@@ -31,15 +31,15 @@ div {
     margin-right:50px;
 }
 
-#topheader{
-    font-size: 35px;
-    border: none;
-    transition: 2s linear;
-}
+/*#topheader{*/
+    /*font-size: 35px;*/
+    /*border: none;*/
+    /*transition: 2s linear;*/
+/*}*/
 
-#topheader:hover{
-    border: 5px dashed blue;
-    font-size: 50px;
+/*#topheader:hover{*/
+    /*border: 5px dashed blue;*/
+    /*font-size: 50px;*/
 }
 h4 {
     margin: 20px 0px 8px 0px;
@@ -58,4 +58,11 @@ table {
 }
 td {
     border: 1px dotted black;
+}
+.border {
+    transition: 2s linear;
+    border:1px dotted black;
+}
+.border:hover {
+    border:1px dotted purple;
 }
