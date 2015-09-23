@@ -13,3 +13,14 @@
 .spacing {
     margin: 15px;
 }
+.spacing{
+    font-size: 18px;
+    border: none;
+    transition: 0.1s\ linear;
+}
+
+.spacing:hover{
+    /*border: 5px dashed blue;*/
+    font-size: 23px;
+}
+

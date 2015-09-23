@@ -10,7 +10,9 @@ h6 {
     font-size: 24px;
 }
 body {
-    background-color: rgb(255, 255, 204);
+    background: linear-gradient(white,rgb(204,255,255));
+    /*background-repeat:no-repeat;*/
+    /*background-color: rgb(255, 255, 204);*/
     font-family: helvetica;
 }
 img {
@@ -32,10 +34,28 @@ div {
 #topheader{
     font-size: 35px;
     border: none;
-    transition: 2s all linear;
+    transition: 2s linear;
 }
 
 #topheader:hover{
     border: 5px dashed blue;
     font-size: 50px;
+}
+h4 {
+    margin: 20px 0px 8px 0px;
+}
+#tag {
+    margin:0px 0px 0px 0px;
+}
+h5 {
+    margin-bottom:0px;
+}
+#example {
+    margin-top:8px;
+}
+table {
+    border:1px solid black;
+}
+td {
+    border: 1px dotted black;
 }

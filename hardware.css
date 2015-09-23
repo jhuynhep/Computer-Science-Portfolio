@@ -9,7 +9,9 @@ h5{
     font-size:24px;
 }
 body {
-    background-color: rgb(255,255,204);
+    /*background-image:url("https://33.media.tumblr.com/0b3ead515381471e109dd9b16e22cfbf/tumblr_nefchkIlBV1rvn6njo1_500.gif");*/
+    background: linear-gradient(white, rgb(204,255,255));
+    background-size:100% 1890px;
     font-family:helvetica;
 }
 /*div {*/
@@ -75,6 +77,8 @@ body {
         transform: rotateY(180deg);
     }
 #des-motherboard {
+    text-align:center;
+    text-align:justify;
     position:absolute;
     top:132%; 
 };
@@ -92,6 +96,17 @@ p {
 .front {
     width:240px
     height:300px;
+}
+h2 {
+    /*text-align center;*/
+    /*margin:center;*/
+    /*position:absolute;*/
+    /**/
+}
+.round {
+    border-radius:25px;
+    margin-left:10px;
+    margin-bottom:10px;
 }
 
         
