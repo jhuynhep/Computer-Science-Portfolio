@@ -1,81 +1,92 @@
 h1 {
-    font-family:verdana;
-    text-align:center;
+    font-family: verdana;
+    text-align: center;
 }
-h2, 
-h3 {
-    font-size:24px;
 
+h2,
+h3 {
+    font-size: 24px;
 }
+
 body {
-    background: linear-gradient(white,rgb(204,255,255));
-    background-size:100% 900px;
-    font-family:helvetica;
+    background: linear-gradient(white, rgb(204, 255, 255));
+    background-size: 100% 900px;
+    font-family: helvetica;
 }
+
 h2 {
-    text-align:center;
+    text-align: center;
 }
+
 .sophmore {
-    width:30%; 
-    position:absolute; 
-    top:31%; 
-    left:35%;
-    text-align:center;
+    width: 30%;
+    position: absolute;
+    top: 31%;
+    left: 35%;
+    text-align: center;
 }
+
 .piano {
-    width:30%;
-    position:absolute;
-    top:50%;
-    left:35%;
-    text-align:center;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    text-align: center;
 }
+
 .food {
-    width:30%;
-    position:absolute;
-    top:65%;
-    left:35%;
-    text-align:center;
+    width: 30%;
+    position: absolute;
+    top: 65%;
+    left: 35%;
+    text-align: center;
 }
+
 .travel {
-    width:30%; 
-    position:absolute; 
-    top:85%; 
-    left:35%;
-    text-align:center;
+    width: 30%;
+    position: absolute;
+    top: 85%;
+    left: 35%;
+    text-align: center;
 }
+
 h2,
 p {
-    text-align:center;
+    text-align: center;
 }
+
 .everest {
-    width:30%; 
-    position:absolute; 
-    top:30%;
-    left:0%;
+    width: 30%;
+    position: absolute;
+    top: 30%;
+    left: 0%;
 }
+
 .beach {
-    width:30%;
-    position:absolute;
-    top:30%;
-    left:70%;
+    width: 30%;
+    position: absolute;
+    top: 30%;
+    left: 70%;
 }
+
 .key {
-    width:30%;
-    position:absolute;
-    top:60%;
-    left:0%;
+    width: 30%;
+    position: absolute;
+    top: 60%;
+    left: 0%;
 }
-.rice {   
-    width:30%;
-    position:absolute;
-    top:60%;
-    right:0%;
+
+.rice {
+    width: 30%;
+    position: absolute;
+    top: 60%;
+    right: 0%;
 }
+
 .travel {
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
+
 img {
-    border-radius:10px;
-    /*margin-right:10px;*/
-    /*margin-left:10px;*/
+    border-radius: 10px;  
 }

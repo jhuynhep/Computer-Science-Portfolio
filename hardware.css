@@ -1,112 +1,195 @@
 h1 {
-    font-family:verdana;
-    text-align:center;
+    font-family: verdana;
+    text-align: center;
 }
-h2, 
+
+h2,
 h3,
 h4,
-h5{
-    font-size:24px;
+h5 {
+    font-size: 24px;
 }
+
 body {
-    /*background-image:url("https://33.media.tumblr.com/0b3ead515381471e109dd9b16e22cfbf/tumblr_nefchkIlBV1rvn6njo1_500.gif");*/
-    background: linear-gradient(white, rgb(204,255,255));
-    background-size:100% 1890px;
-    font-family:helvetica;
+    background: linear-gradient(white, rgb(204, 255, 255));
+    background-size: 300%;
+    font-family: helvetica;
 }
-/*div {*/
-    /*vertical-align: top;*/
-    /*display: inline-block;*/
-}
-/*#images {*/
-    /*white-space:nowrap;*/
-}
-/*#ram {*/
-    /*width:20%;*/
-    /*padding-bottom:20%;*/
-}
-/*#motherboard {*/
-    /*width:40px;*/
-    /*width:50%;*/
-    /*padding-right:5%;*/
-    /*padding-left:5%;*/
-}
-/*#cpu {*/
-    /*width:20%;*/
-    /*position: relative;*/
-    /*transform: translateY(-70%)*/
-}
+
 .flip-container {
-        margin: 50px;
-        perspective: 500;
-        display: inline-block;
-    }
-    .flip-container:hover .card {
-        transform: rotateY(180deg);
-    }
-    .card, .back {
-        width: 240px;
-        height: 240px;
-    }
-    .card {
-        transition: 0.5s;
-        transform-style: preserve-3d;
-        position: relative;
-    }
-    .front, .back {
-        backface-visibility: hidden;
-        position: absolute;
-    }
-    .front {
-        z-index: 1;
-        transform: rotateY(180deg);
-    }
-    .back {
-        z-index: 2; 
-        transform: rotateY(0deg);
-    }
-    
+    perspective: 500;
+    display: inline-block;
+}
+
+.flip-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+.card,
+.back {
+    width: 240px;
+    height: 240px;
+}
+
+.card {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+}
+
+.front {
+    z-index: 1;
+    transform: rotateY(180deg);
+}
+
+.back {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
 
 .flip-containers {
-        margin-left:1050px;
-        margin-bottom:500px;
-        perspective:500;
-        display: inline-block;
+    margin-left:1050px;
+    margin-bottom:500px;
+    perspective:500;
+    display: inline-block;
 }
+
 .flip-containers:hover .card {
-        transform: rotateY(180deg);
-    }
+    transform: rotateY(180deg);
+}
+
 #des-motherboard {
     text-align:center;
     text-align:justify;
     position:absolute;
-    top:132%; 
-};
-.back {
-    padding:center;
+    top:132%;
 }
-/*.card {*/
-    /*border:2px solid;*/
-    /*border-radius:25px;*/
-}
-/*p {.*/
-    /*margin-right:20px;*/
-    /*margin-left:5px;*/
-}
+
 .front {
-    width:240px
-    height:300px;
+    width:240px;
+    height:325px;
 }
-h2 {
-    /*text-align center;*/
-    /*margin:center;*/
-    /*position:absolute;*/
-    /**/
-}
+
 .round {
     border-radius:25px;
     margin-left:10px;
     margin-bottom:10px;
 }
+#computerpic {
+    width:25%;
+    position:absolute; 
+    top:206%; 
+    left:0%; 
+    margin-left:50px; 
+    border-radius:25px;
+}
 
-        
+#monitor {
+    width:63%; 
+    position:absolute; 
+    top:215%; 
+    right:2%
+}
+
+#monitorheading {
+    position:absolute; 
+    top:205%; 
+    left:35%
+}
+
+#keyboard {
+    width:63%;
+    position:absolute; 
+    top:225%; 
+    left:35%
+}
+
+#mouse {
+    width:63%; 
+    position:absolute; 
+    top:238%; 
+    right:2%
+}
+
+#topdash {
+    width:100%; 
+    position:absolute; 
+    top:152%; 
+    left:0%
+}
+
+#bottomdash {
+    width:100%; 
+    position:absolute; 
+    top:195%; 
+    left:0%
+}
+
+#drive {
+    width:63%; 
+    position:absolute; 
+    top:170%; 
+    right:2%
+}
+
+#diskheading {
+    position:absolute; 
+    top:160%; 
+    left:35%
+}
+
+#driveimage {
+    width:30%; 
+    position:absolute; 
+    top:160%; 
+    left:0px
+}
+
+#des-motherboard {
+    margin-right:25%; 
+    margin-left:21%
+}
+
+#cpuimage {
+    position:absolute; 
+    left:9%; 
+    width:200px; 
+    border:2px solid black;
+}
+
+#arrowleft {
+    width:150px; 
+    position:absolute; 
+    top:460px; 
+    right:290px; 
+    z-index:3;
+}
+
+#motherboardimage {
+    position:absolute; 
+    top:200px; 
+    left:300px; 
+    width:700px;
+    z-index:1
+}
+
+#arrowright {
+    transform: scaleX(-1); 
+    width:125px; 
+    position:absolute; 
+    top:340px; 
+    left:250px; 
+    z-index:2
+}
+
+#arrow {
+    position:absolute; 
+    left:5%; 
+    border:2px solid black;
+}

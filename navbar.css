@@ -2,25 +2,25 @@
     border: double;
     border-width: 10px;
     color: rgb(102, 204, 204);
-    font-weight:bold;
-    text-align:center;
+    font-weight: bold;
+    text-align: center;
 }
+
 #navbar li {
     display: inline-block;
 }
-#navbar a {
-} 
+
 .spacing {
     margin: 15px;
 }
-.spacing{
+
+.spacing {
     font-size: 18px;
     border: none;
     transition: 0.1s\ linear;
 }
 
-.spacing:hover{
-    /*border: 5px dashed blue;*/
+.spacing:hover {
+
     font-size: 23px;
 }
-

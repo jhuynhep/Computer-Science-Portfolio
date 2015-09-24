@@ -1,25 +1,27 @@
 h1 {
-    font-family:verdana;
-    text-align:center;
+    font-family: verdana;
+    text-align: center;
 }
-h2, h3 {
-    font-size:24px;
+
+h2,
+h3 {
+    font-size: 24px;
 }
+
 body {
-    /*background-image:url("https://33.media.tumblr.com/0b3ead515381471e109dd9b16e22cfbf/tumblr_nefchkIlBV1rvn6njo1_500.gif");*/
-    background: linear-gradient(white,rgb(204,255,255));
-    background-size:100% 635px;
-    /*background-size:1300px 1300px*/
-    /*background-color: rgb(255,255,204);*/
-    font-family:helvetica;
+    background: linear-gradient(white, rgb(204, 255, 255));
+    background-size: 100% 635px;
+    font-family: helvetica;
 }
+
 img {
-    width:40%;
-    position:absolute;
-    top:30%;
-    left:52%;
-    border:6px ridge gray;
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 52%;
+    border: 6px ridge gray;
 }
+
 p {
-    width:47.5%;
+    width: 47.5%;
 }
