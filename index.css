@@ -1,0 +1,33 @@
+p, #submitButton, #dropdown {
+    font-family: verdana;
+    font-size: 12px;
+}
+
+#calc {
+    text-align: center;
+    margin-top: 200px;
+}
+#header {
+    text-align:center;
+    font-size:50px;
+    margin-top: 80px;
+}
+#input1, #input2{
+    font-size:30px;
+    text-align:center;
+}
+#submitButton {
+    width:100px; 
+    height:40px;
+}
+#dropdown {
+    width:40px;
+    height:40px;
+    font-size:20px;
+}
+#solution{
+    font-size:30px;
+}
+body {
+    background-color:rgb(204, 204, 255);
+}
