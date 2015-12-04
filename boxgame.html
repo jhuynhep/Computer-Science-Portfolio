@@ -3,12 +3,25 @@ To change this template use Tools | Templates.
 -->
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="navbar.css">
 </head>
-<body>
-    <canvas id="mycanvas" width="500px" height="500px" style="border: 2px solid black"></canvas>
 
+<body style="background: linear-gradient(white, rgb(204, 255, 255)); background-size: 100% 670px;">
+    <ul id="navbar">
+        <li><a class="spacing" href="index.html"> Intro Page </a></li>
+        <li><a class="spacing" href="aboutme.html"> All About Me </a></li>
+        <li><a class="spacing" href="HTML.html"> HTML/CSS </a></li>
+        <li><a class="spacing" href="hardware.html"> Hardware </a></li>
+        <li><a class="spacing" href="calc.html"> Calculator </a></li>
+        <li><a class="spacing" href="boxgame.html"> Box Game </a></li>
+        <li><a class="spacing" href="todolist.html"> Todo List </a></li>
+    </ul>
+    <canvas id="mycanvas" width="500px" height="500px" style="border: 2px solid black; background:rgb(204,255,204); margin-left: 250px;"></canvas>
+    <p style="width: 245px; position: absolute; top:280px; right: 180px; font-family:arial; border: 2px solid black; padding: 10px">Use the arrow keys to control blue circle while trying to avoid the falling circles. Reach 200 points to win!</p>
     <script src="boxgame.js"></script>
 </body>
+
 </html>
