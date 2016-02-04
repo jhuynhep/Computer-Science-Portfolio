@@ -3,7 +3,7 @@ var ctx = mycanvas.getContext("2d");
 
 var circles = [];
 var gameOver = false;
-var win = false
+var win = false;
 
 //This variable creates that main circle being controlled by users.
 var box = {
@@ -55,6 +55,7 @@ function Circle(x, radius) {
         this.y = this.y + (speed / 10);
     };
 }
+
 
 //This function controls the amount of circles that are falling on the screen
 function myFunction() {
