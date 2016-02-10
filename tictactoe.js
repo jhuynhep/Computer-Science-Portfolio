@@ -5,24 +5,14 @@ var rbutton = document.getElementById("rButton");
 var bbutton = document.getElementById("bButton");
 var pbutton = document.getElementById("pButton");
 var ybutton = document.getElementById("yButton");
-var fourbutton = document.getElementById("fourButton");
-var threebutton = document.getElementById("threeButton");
 var squares = [];
 var turnX = false;
-var turnsymbolX = false;
 var winner = false;
 var black = true;
 var red = false;
 var pink = false;
 var yellow = false;
 var NumSquares = 3;
-// localStorage.setItem("NumSquares", 3);
-// fourbutton.addEventListener("click", function(){
-//     localStorage.setItem("NumSquares", 4);
-//     location.reload();
-// });
-// var NumSquares = localStorage.getItem("NumSquares");
-//fourbutton.addEventListener("click", function(){NumSquares = 4});
 var sideLength = mycanvas.width / NumSquares;
 
 //These are the even listners for the reset buttons and the color options
@@ -70,7 +60,8 @@ function ycolor() {
     red = false;
 }
 
-//This is an object constructor that creates the nine squares
+//This is an object constructor that creates the nine squares. It also has event listeners that 
+//draw the x's and o's as well as calls the functions that detects a win or tie.
 function GridPiece(x, y, width, height) {
     this.sideLength = mycanvas.width / NumSquares;
     this.x = x;
@@ -108,45 +99,23 @@ function GridPiece(x, y, width, height) {
                     else {
                         _this.isx = false;
                         _this.iso = true;
-                        _this.isosymbol = true;
-                        _this.issymbolo = true;
-                        _this.isdowno = true;
                         drawCircle(_this.centerX, _this.centerY, _this.sideLength / 4);
                         turnX = true;
-                    //   unique();
-                    //     turnsymbolX = true;
-                    //     if(turnX){
-                    //         otherCheckForWin();
-                    //         //otherUnique();
-                    //         //otherCheckForWin();
-                    //     }
-                        
-                        
-                        //unique();
-                        // otherUnique();
-                        
                     }
                 }  
             }
-            // }
-            //all();
-            //checkForWin();
         });
         document.addEventListener("click",function(){
-            //otherCheckForWin();
             dO();
         });
         document.addEventListener("click",function(){
             duO();
-            //unique();
         });
         document.addEventListener("click",function(){
             rO();
-            //unique();
         });
         document.addEventListener("click",function(){
             ddO();
-            //unique();
         });
         document.addEventListener("click",function(){
             dX();
@@ -160,61 +129,92 @@ function GridPiece(x, y, width, height) {
         document.addEventListener("click",function(){
             rX();
         });
-        //all();
+        document.addEventListener("click",function(){
+            tie();
+        });
     };
     this.init();
     
 }
 
+// These functions determine three in a row for the X's 
 function down(i,j) {
-    
     if (squares[j][i].isx && squares[j + 1][i].isx && squares[j + 2][i].isx) {
-        mycanvas.style.backgroundColor = "#2D9CC2";
+        mycanvas.style.backgroundColor = "#99FFFF";
+        ctx.font = "30px Arial";
+        ctx.fillText("X Wins", 250, 300);
+        winner = true;
     }
 }
-
 function diagonalDown(i,j){
     if(squares[j][i].isx && squares[j + 1][i + 1].isx && squares[j + 2][i + 2].isx){
-        mycanvas.style.backgroundColor = "#2D9CC2";
+        mycanvas.style.backgroundColor = "#99FFFF";
+        ctx.font = "30px Arial";
+        ctx.fillText("X Wins", 250, 300);
+        winner = true;
     }
 }
-
 function diagonalUp(i,j){
     if(squares[j][i].isx && squares[j + 1][i - 1].isx && squares[j + 2][i - 2].isx){
-        mycanvas.style.backgroundColor = "#2D9CC2";
+        mycanvas.style.backgroundColor = "#99FFFF";
+        ctx.font = "30px Arial";
+        ctx.fillText("X Wins", 250, 300);
+        winner = true;
     }
 }
-
 function right(i,j){
     if(squares[j][i].isx && squares[j][i + 1].isx && squares[j][i + 2].isx){
-        mycanvas.style.backgroundColor = "#2D9CC2";
+        mycanvas.style.backgroundColor = "#99FFFF";
+        ctx.font = "30px Arial";
+        ctx.fillText("X Wins", 250, 300);
+        winner = true;
     }
 }
 
+//These functions determine three in a row for the O's
 function downO(i,j) {
     if(squares[j][i].iso && squares[j + 1][i].iso && squares[j + 2][i].iso){
         mycanvas.style.backgroundColor = "#EFE6F2";
+        ctx.font = "30px Arial";
+        ctx.fillText("O Wins", 250, 300);
+        winner = true;
     }
 }
-
 function diagonalDownO(i,j){
     if(squares[j][i].iso && squares[j + 1][i + 1].iso && squares[j + 2][i + 2].iso){
         mycanvas.style.backgroundColor = "#EFE6F2";
+        ctx.font = "30px Arial";
+        ctx.fillText("O Wins", 250, 300);
+        winner = true;
     }
 }
-
 function diagonalUpO(i,j){
     if(squares[j][i].iso && squares[j + 1][i - 1].iso && squares[j + 2][i - 2].iso){
         mycanvas.style.backgroundColor = "#EFE6F2";
+        ctx.font = "30px Arial";
+        ctx.fillText("O Wins", 250, 300);
+        winner = true;
     }
 }
-
 function rightO(i,j){
     if(squares[j][i].iso && squares[j][i + 1].iso && squares[j][i + 2].iso){
         mycanvas.style.backgroundColor = "#EFE6F2";
+        ctx.font = "30px Arial";
+        ctx.fillText("O Wins", 250, 300);
+        winner = true;
     }
 }
 
+//This function determines a tie
+function tie(){
+    if(!winner && squares[0][0].hasmark && squares[0][1].hasmark && squares[0][2].hasmark &&squares[1][0].hasmark && squares[1][1].hasmark && squares[1][2].hasmark && squares[2][0].hasmark && squares[2][1].hasmark && squares[2][2].hasmark){
+        ctx.font = "30px Arial";
+        ctx.fillText("It's a tie!", 250, 300);
+    }
+}
+
+//These functions define the varible j and i using a for loop and calls the functions that
+//determine three in a row for the O's
 function dO(i,j){
     for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -222,7 +222,6 @@ function dO(i,j){
         }
     }
 }
-
 function duO(){
     for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -230,7 +229,6 @@ function duO(){
         }
     }
 }
-
 function ddO(){
     for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -246,6 +244,8 @@ function rO(){
     }
 }
 
+//These function define the variable j and i using a for loop and calls the functions that
+//determine three in a row for the X's
 function duX(){
      for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -253,7 +253,6 @@ function duX(){
         }
      }
 }
-
 function dX(){
      for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -261,7 +260,6 @@ function dX(){
         }
      }
 }
-
 function ddX(){
      for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -269,7 +267,6 @@ function ddX(){
         }
      }
 }
-
 function rX(){
     for(var j = 0; j < squares.length; j++){
         for(var i = 0; i< squares[j].length; i++){
@@ -277,11 +274,8 @@ function rX(){
         }
      }
 }
-threebutton.addEventListener("click", function(){
-    ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
-    NumSquares = 3;
-    sideLength = mycanvas.width / NumSquares;
-    squares.length = 0;
+
+//This draws the the gird pieces. j is the row and i is the column
 for(var j = 0 ; j < NumSquares; j++) {
         squares.push([]);
         for (var i = 0; i < NumSquares; i++) {
@@ -290,28 +284,7 @@ for(var j = 0 ; j < NumSquares; j++) {
             squares[j][i].draw();
         }
     }
-});
-
-//This is a for loop that draws the items in the array j is the row and i is the column
-fourbutton.addEventListener("click", function(){
-//    reset();
-    //squares.clear();
-    ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
-    NumSquares = 4;
-    sideLength = mycanvas.width / NumSquares;
-    squares.length = 0;
-    for(var j = 0 ; j < NumSquares; j++) {
-        squares.push([]);
-        for (var i = 0; i < NumSquares; i++) {
-            var piece = new GridPiece(i * sideLength, j * sideLength, sideLength, sideLength);
-            squares[j].push(piece);
-            squares[j][i].draw();
-        }
-    }
-});
-
-
-
+ 
 //This is a function that creates the circles that go in the boxes    
 function drawCircle(x, y, r) {
     if (red) {
