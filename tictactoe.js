@@ -1,17 +1,27 @@
 var mycanvas = document.getElementById("mycanvas");
 var ctx = mycanvas.getContext("2d");
+
+//These variables are for the buttons on the page
 var button = document.getElementById("resetButton");
 var rbutton = document.getElementById("rButton");
 var bbutton = document.getElementById("bButton");
 var pbutton = document.getElementById("pButton");
 var ybutton = document.getElementById("yButton");
+
+//This creates an array to store the grid pieces
 var squares = [];
+
+//This sets whose turn it is and whether there's a winner 
 var turnX = false;
 var winner = false;
+
+//These variables are for the different colors.
 var black = true;
 var red = false;
 var pink = false;
 var yellow = false;
+
+//These variables determine the side of the gird
 var NumSquares = 3;
 var sideLength = mycanvas.width / NumSquares;
 
