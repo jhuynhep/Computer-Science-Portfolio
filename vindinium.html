@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<htlm>
+
+    <head>
+        <title>Vindinium</title>
+        <link rel="stylesheet" type="text/css" href="vindinium.css">
+        <link rel="stylesheet" type="text/css" href="navbar.css">
+    </head>
+
+    <body>
+        <ul id="navbar">
+            <li><a class="spacing" href="index.html"> Intro Page </a></li>
+            <li><a class="spacing" href="aboutme.html"> All About Me </a></li>
+            <li><a class="spacing" href="HTML.html"> HTML/CSS </a></li>
+            <li><a class="spacing" href="hardware.html"> Hardware </a></li>
+            <li><a class="spacing" href="calc.html"> Calculator </a></li>
+            <li><a class="spacing" href="boxgame.html"> Box Game </a></li>
+            <li><a class="spacing" href="todolist.html"> TodoList </a></li>
+            <li><a class="spacing" href="tictactoe.html"> Tic Tac Toe </a></li>
+            <li><a class="spacing" href="vindinium.html"> Vindinium </a></li>
+        </ul>
+        <h1>Vindinium</h1>
+        <br>
+        <div><img style = "border: 2px solid black" src = "http://rwdc2.com/files/forest.png"></div>
+        <br>
+        <br>
+        <h2>What is Vindinium?</h2>
+            <p>As stated on their website, Vindinium is an "artificial intelligence challenge" which is played against three other players. At the start of the game, the player starts out with zero gold, zero mines, and one hundred health. The goal of the game to end up with the most gold at the end of the game.</p>
+        <h3>How do you get gold?</h3>
+            <p>Players can obtain gold by claiming mines, which will give them gold for every turn. However, when the player claims the mine, they lose 20 health. When the health reaches a certain low point, the bot can be programmed to go to a tavern, which will give the bot 50 health points in exchange for 2 gold. Lastly, another way to claim mines is to attack other players in order to take over their mines.</p>
+        <h4>The Entirety of my Code</h4>
+        <pre style = width:85%><code>var Bot = require('bot');
+var PF = require('pathfinding');
+//var bot = new Bot('u7ew1bvm', 'training', 'http://vindinium.org'); 
+var bot = new Bot('8ggd4j36', 'arena', 'http://52.53.211.7:9000');
+var goDir;
+var Promise = require('bluebird');
+Bot.prototype.botBrain = function() {
+    return new Promise(function(resolve, reject) {
+        _this = bot;
+        //////* Write your bot below Here *//////
+        //////* Set `myDir` in the direction you want to go and then bot.goDir is set to myDir at the bottom *////////
+        /*                                      *
+         * This Code is global data!            *
+         *                                      */
+        // Set myDir to what you want and it will set bot.goDir to that direction at the end.  Unless it is "none"
+        var myDir;
+        var myPos = [bot.yourBot.pos.x, bot.yourBot.pos.y];
+        
+        // This states that my bot should not be double drinking at the start of the game
+        if(bot.data.game.turn < 5){
+            bot.drink = false;    
+        }
+        
+        // This is an array that stores the information of all the other enemy bots
+        var enemyBots = [];
+        if (bot.yourBot.id != 1) enemyBots.push(bot.bot1);
+        if (bot.yourBot.id != 2) enemyBots.push(bot.bot2);
+        if (bot.yourBot.id != 3) enemyBots.push(bot.bot3);
+        if (bot.yourBot.id != 4) enemyBots.push(bot.bot4);
+
+        // This determines the closest enemy bot
+        var closestBot = enemyBots[0];
+        for (var i = 0; i < enemyBots.length; i++) {
+            if (bot.findDistance(myPos, closestBot.posArray) > bot.findDistance(myPos, enemyBots[i].posArray)) {
+                closestBot = enemyBots[i];
+            }
+        }
+        
+        // This determines the positions of all the mines that the enemies have
+        var minesLocation = [];
+        for (var k = 0; k < enemyBots.length; k++) {
+            for (var i = 0; i < enemyBots[k].mines.length; i++) {
+                minesLocation.push(enemyBots[k].mines[i]);
+            }
+        }
+
+        // This combines the free mines and the enemies' mine into one big list so my bot will be able to go to any mine
+        var totalFreeMines = bot.freeMines.concat(minesLocation);
+        console.log(totalFreeMines);
+        
+        /*                                      *
+         * This Code Decides WHAT to do         *
+         *                                      */
+         
+        // This is the decision tree, which tells my bot what task to do based off of my bot's current data
+        var task;
+        if(bot.drink){
+            task = "lowhealth";
+            bot.drink = false;
+        }
+        else if(bot.yourBot.life < 30) {
+            bot.drink = true;
+            task = "lowhealth";
+        }
+        else if ((bot.yourBot.life < 50 && bot.yourBot.life >= 30) || totalFreeMines.length === 0) {
+            task = "lowhealth";
+        }
+        else if (bot.findDistance(myPos, closestBot.posArray) <= 3 && bot.yourBot.life > closestBot.life) {
+            task = "attackingclose";
+        }
+        else if (bot.yourBot.life >= 50) {
+            task = "attacking";
+        }
+        else {
+            task = "freemines";
+        }
+
+        /*                                      *
+         * This Code Determines HOW to do it    *
+         *                                      */
+
+        // enemyBots = [{mines: [[x,y], [x,y]] }, {mines: [[x,y], [x,y]}, {mines: [[x,y], [x,y]}]
+        // enemyBots[0].mines[0] 
+
+        // This code finds the nearest tavern and sets myDir toward that direction
+        if (task === "lowhealth") {
+            var closestTavern = bot.taverns[0];
+            for (var i = 0; i < bot.taverns.length; i++) {
+                if (bot.findDistance(myPos, closestTavern) > bot.findDistance(myPos, bot.taverns[i])) {
+                    closestTavern = bot.taverns[i];
+                }
+            }
+            console.log("Going into a tavern!");
+            myDir = bot.findPath(myPos, closestTavern);
+        }
+
+        // This code sets the direction of my bot towards the closest bot
+        if (task === "attackingclose") {
+            console.log("Attacking close");
+            myDir = bot.findPath(myPos, closestBot.posArray);
+        }
+
+        // This code will tell my bot the attack the bot with the most mines, only if they have less health than my bot
+        if (task === "attacking") {
+            var mostMines = enemyBots[0];
+            for (var j = 0; j < enemyBots.length; j++) {
+                if (mostMines.mineCount < enemyBots[j].mineCount) {
+                    mostMines = enemyBots[j];
+                }
+            }
+            if(mostMines.mineCount > bot.yourBot.mineCount){
+                console.log("Attacking!");
+                myDir = bot.findPath(myPos, mostMines.posArray);
+            } 
+            else {
+                task = "freemines";
+            }
+        }
+
+        // This Code find the nearest freemine or enemy mines and sets myDir toward that direction 
+        if (task === "freemines") {
+            var closestMine = totalFreeMines[0];
+            for (i = 0; i < totalFreeMines.length; i++) {
+                if (bot.findDistance(myPos, closestMine) > bot.findDistance(myPos, totalFreeMines[i])) {
+                    closestMine = totalFreeMines[i];
+                }
+            }
+            console.log("Claiming a Free Mine!");
+            myDir = bot.findPath(myPos, closestMine);
+        }
+
+        /*                                                                                                                              *
+         * This Code Sets your direction based on myDir.  If you are trying to go to a place that you can't reach, you move randomly.   *
+         * Otherwise you move in the direction set by your code.  Feel free to change this code if you want.                            */
+         
+        if (myDir === "none") {
+            console.log("Going Random!");
+            var rand = Math.floor(Math.random() * 4);
+            var dirs = ["north", "south", "east", "west"];
+            bot.goDir = dirs[rand];
+        }
+        else {
+            bot.goDir = myDir;
+        }
+
+        ///////////* DON'T REMOVE ANTYTHING BELOW THIS LINE *//////////////
+        resolve();
+    });
+};
+bot.runGame();</code></pre></div>
+    <h5>Explaining Parts of my Code</h5>
+    <pre style = width:75% ><code>
+        // This is an array that stores the information of all the other enemy bots
+        var enemyBots = [];
+        if (bot.yourBot.id != 1) enemyBots.push(bot.bot1);
+        if (bot.yourBot.id != 2) enemyBots.push(bot.bot2);
+        if (bot.yourBot.id != 3) enemyBots.push(bot.bot3);
+        if (bot.yourBot.id != 4) enemyBots.push(bot.bot4);
+
+        // This determines the closest enemy bot
+        var closestBot = enemyBots[0];
+        for (var i = 0; i < enemyBots.length; i++) {
+            if (bot.findDistance(myPos, closestBot.posArray) > bot.findDistance(myPos, enemyBots[i].posArray)) {
+                closestBot = enemyBots[i];
+            }
+        }
+        
+        // This determines the positions of all the mines that the enemies have
+        var minesLocation = [];
+        for (var k = 0; k < enemyBots.length; k++) {
+            for (var i = 0; i < enemyBots[k].mines.length; i++) {
+                minesLocation.push(enemyBots[k].mines[i]);
+            }
+        }
+
+        // This combines the free mines and the enemies' mine into one big list so my bot will be able to go to any mine
+        var totalFreeMines = bot.freeMines.concat(minesLocation);
+        console.log(totalFreeMines);
+    </code></pre>
+    <p>This section of my code is where my global data is, which means that I will be able to reference 
+    these variables later in my code. In order to find the closest bot, I needed to use a for loop in 
+    order for it to loop through all of the enemy bots and comparing their distances to my position. Then,
+    I stored that specific enemy bot in a variable. Similarly for determining the position of the enemies' 
+    mines, I needed to uses a for loop. However, this time, it was a nested for loop. I needed a nested 
+    for loop so that it would first loop through the enemy bots, and then their mines. I pushed the
+    positions in an array. I wanted to do this so that I would be able to concat the free mines and the 
+    enemy mines into a variable so that my bot would also know how to steal other bots' mines.</p>
+    <br>
+    <pre style = width:68% ><code> // This is the decision tree, which tells my bot what task to do based off of my bot's current data
+        var task;
+        if(bot.drink){
+            task = "lowhealth";
+            bot.drink = false;
+        }
+        else if(bot.yourBot.life < 30) {
+            bot.drink = true;
+            task = "lowhealth";
+        }
+        else if ((bot.yourBot.life < 50 && bot.yourBot.life >= 30) || totalFreeMines.length === 0) {
+            task = "lowhealth";
+        }
+        else if (bot.findDistance(myPos, closestBot.posArray) <= 3 && bot.yourBot.life > closestBot.life) {
+            task = "attackingclose";
+        }
+        else if (bot.yourBot.life >= 50) {
+            task = "attacking";
+        }
+        else {
+            task = "freemines";
+        }</code></pre>
+    <p>This part of my code is the decision tree, that was created using an if...else statement. Therefore, 
+    depending on my bot's health, position, and number of mines, a specific task will be assigned to my 
+    bot. I chose to organize my decision this way, so that it would prioritize drinking twice when my bot
+    has extremely low health. Then, my bot should always be attacking anyone near them if my bot has more
+    health than them. Then, my bot should go attack the person with the most mines if their health is good.
+    Finally, if none of the other things apply, my bot should go claim free mines.</p>
+    <br>
+    <pre style = width:75% ><code> // This code finds the nearest tavern and sets myDir toward that direction
+        if (task === "lowhealth") {
+            var closestTavern = bot.taverns[0];
+            for (var i = 0; i < bot.taverns.length; i++) {
+                if (bot.findDistance(myPos, closestTavern) > bot.findDistance(myPos, bot.taverns[i])) {
+                    closestTavern = bot.taverns[i];
+                }
+            }
+            console.log("Going into a tavern!");
+            myDir = bot.findPath(myPos, closestTavern);
+        }
+
+        // This code sets the direction of my bot towards the closest bot
+        if (task === "attackingclose") {
+            console.log("Attacking close");
+            myDir = bot.findPath(myPos, closestBot.posArray);
+        }
+
+        // This code will tell my bot the attack the bot with the most mines, only if they have less health than my bot
+        if (task === "attacking") {
+            var mostMines = enemyBots[0];
+            for (var j = 0; j < enemyBots.length; j++) {
+                if (mostMines.mineCount < enemyBots[j].mineCount) {
+                    mostMines = enemyBots[j];
+                }
+            }
+            if(mostMines.mineCount > bot.yourBot.mineCount){
+                console.log("Attacking!");
+                myDir = bot.findPath(myPos, mostMines.posArray);
+            } 
+            else {
+                task = "freemines";
+            }
+        }
+
+        // This Code find the nearest freemine or enemy mines and sets myDir toward that direction 
+        if (task === "freemines") {
+            var closestMine = totalFreeMines[0];
+            for (i = 0; i < totalFreeMines.length; i++) {
+                if (bot.findDistance(myPos, closestMine) > bot.findDistance(myPos, totalFreeMines[i])) {
+                    closestMine = totalFreeMines[i];
+                }
+            }
+            console.log("Claiming a Free Mine!");
+            myDir = bot.findPath(myPos, closestMine);
+        }
+</code></pre>
+    <p>This part of my code tells my bot how to do certain tasks that they are given. For both the task 
+    of low health and free mines, I used a for loop to find the closest mine or tavern. Then set my bot's 
+    direction to go towards that location. For the task of attacking close, I would just set my bot's 
+    direction for to the closest bot. Lastly, for the task of attacking, I calculated the bot that has
+    more mines than me and attack them. Otherwise, my bot's task is to go claim a free mine.</p>
+    <h6>How did my bot do?</h6>
+    <p>In the end, I am very happy of what my bot can do. My bot originally knew how to go to claim the closest free mines. However, I modified this code in order to claim my enemies' mine as well. This means that there are more options for my bot of which mine to claim. In addition, my bot can go to the closest taern. I made a twist on this so that if my bot has all the mines, it will stay at the tavern. That way, if an enemy comes to attack me, I will have enough health. I also programmed for my bot to double drink when they have extremely low health. Furthermore, my bot knows how to attack the players with the most mines only if my bot had more health than them. I did this so that I would be able to gain all of their mines. Lastly, another feature that my bot has is that it will attack anyone that is within 3 squares from them. I did this so that my bot would be the attacker and not the victim bot.</p>
+    <h6>My Experience With AI</h6>
+    <p>When first starting to program my bot, it was hard because I didn't know where to begin. After looking at the previous code already wirtten for going to the closest mine, I used that to help me build my bot's features. Therefore, as thic project went along, it became easier for me to add different functions, and I was also able to learn and improve my coding abilities in javascript. Finally, after completing this project, I am very happy and proud of how my bot turned outthat I was able to learn something new.</p>
+    </body>
+</htlm>
